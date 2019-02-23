@@ -12,9 +12,7 @@ app.post('/webhooks/github', (req, res) => {
     /*var sender = req.body.sender;
     var branch = req.body.ref;*/
 
-    if (branch.indexOf('master') > -1) {
-        deploy(res)
-    }
+    deploy(res)
 })
 
 app.get('/truerev/testing', (req, res) => res.send("Testing good"))
