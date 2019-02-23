@@ -7,7 +7,8 @@ app.listen(port, () => console.log('Listening on port', port))
 
 app.get('/truerev/', (req, res) => res.send('Hello World'))
 
-app.post('webhooks/github', (req, res) => {
+app.post('/webhooks/github', (req, res) => {
+    console.log("github update called")
     var sender = req.body.sender;
     var branch = req.body.ref;
 
