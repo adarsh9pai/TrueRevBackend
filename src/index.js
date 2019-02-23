@@ -9,10 +9,10 @@ app.get('/truerev/', (req, res) => res.send('Hello World'))
 
 app.post('/webhooks/github', (req, res) => {
     console.log("github update called")
-    var sender = req.body.sender;
-    var branch = req.body.ref;
+    /*var sender = req.body.sender;
+    var branch = req.body.ref;*/
 
-    if (branch.indexOf('master') > -1 && sender.login != "") {
+    if (branch.indexOf('master') > -1) {
         deploy(res)
     }
 })
