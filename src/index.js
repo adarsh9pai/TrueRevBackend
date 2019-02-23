@@ -15,7 +15,7 @@ app.post('/webhooks/github', (req, res) => {
     deploy(res)
 })
 
-app.get('/truerev/nowtesting', (req, res) => res.send("Testing good"))
+app.get('/truerev/random', (req, res) => res.send("Testing good"))
 
 const deploy = (res) => {
     childProcess.exec('cd /home && ./deploy.sh', (err, stdout, stderr) => {
