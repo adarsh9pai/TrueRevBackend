@@ -21,8 +21,8 @@ const deploy = (res) => {
     childProcess.exec('cd /home && ./deploy.sh', (err, stdout, stderr) => {
         if (err) {
             console.error(err)
-            return res.send(500)
+            return res.sendStatus(500)
         }
-        res.send(200)
+        res.sendStatus(200)
     })
 }
