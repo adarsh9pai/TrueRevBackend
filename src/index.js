@@ -7,14 +7,18 @@ const bodyParser = require('body-parser').json()
 const Zillow = require('./zillowEndPoints')
 const multer = require('multer')
 const multerupload = multer({ dest: 'Videos/' })
+const Attom = require('./attomEndPoints')
 
+app.set('json spaces', 2)
 app.use(bodyParser)
 app.use(function(req, res, next) {
 	    res.header("Access-Control-Allow-Origin", "*");
 	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		next();
 })
-app.use('/Zillow',Zillow)
+app.use('/truerev/Zillow', Zillow)
+app.use('/truerev/Attom', Attom)
+
 app.listen(port, () => console.log('Listening on port', port))
 
 app.get('/truerev/', (req, res) => res.json({ message: 'Hello World' }))
@@ -31,7 +35,7 @@ app.post('/truerev/user/create', (req, res) => {
 	}
 })
 
-//app.post('/truerev/video/upload', multerupload.any(), upload.fileupload)
+app.post('/truerev/video/upload', multerupload.any(), upload.fileupload)
 
 app.post('/webhooks/github', (req, res) => {
     console.log("github update called")
