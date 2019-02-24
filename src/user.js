@@ -1,6 +1,7 @@
 const express = require('express')
 const User = express.Router()
-let bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const AWS = require('aws-sdk/dist/aws-sdk-react-native')
 
 User.use(bodyParser)
 
