@@ -4,7 +4,9 @@ const port = 3000
 const childProcess = require('child_process')
 const database = require('./database.js')
 const bodyParser = require('body-parser').json()
+const Zillow = require('./zillowEndPoints')
 
+app.use('/Zillow',Zillow)
 app.listen(port, () => console.log('Listening on port', port))
 
 app.get('/truerev/', (req, res) => res.json({ message: 'Hello World' }))
