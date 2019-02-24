@@ -25,3 +25,8 @@ coverage
 
 # Benchmarking
 benchmarks/graphs
+
+# Custom
+constants.js
+secret.js
+truerev-2-4def494cc017.json

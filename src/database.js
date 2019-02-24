@@ -27,13 +27,14 @@ module.exports.createUser = async function createUser(email, username)
 			projectId: 'truerev-2',
 			keyFilename: 'truerev-2-4def494cc017.json'
 		})
-
+		
 		let document = firestore.collection('Users').doc(email)
 		await document.set({
 			email: email,
 			name: username,
 			videos: []
 		})
+		console.log('writing user: ' + email)
 	}
 	catch(err)
 	{
