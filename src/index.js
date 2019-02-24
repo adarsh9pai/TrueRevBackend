@@ -3,6 +3,11 @@ const app = express()
 const port = 3000
 const childProcess = require('child_process')
 const productSearch = require('./products')
+const FNH = require('./fannieMaeAPIHelper')
+const User = require('./user')
+
+app.use('/FNH',FNH)
+app.use('/User',User)
 
 app.listen(port, () => console.log('Listening on port', port))
 
