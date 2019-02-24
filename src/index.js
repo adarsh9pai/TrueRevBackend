@@ -2,25 +2,39 @@ const express = require('express')
 const app = express()
 const port = 3000
 const childProcess = require('child_process')
-const productSearch = require('./products')
-const FNH = require('./fannieMaeAPIHelper')
-const User = require('./user')
-
-app.use('/FNH',FNH)
-app.use('/User',User)
+const database = require('./database.js')
+const bodyParser = require('body-parser').json()
 
 app.listen(port, () => console.log('Listening on port', port))
 
 app.get('/truerev/', (req, res) => res.json({ message: 'Hello World' }))
 
-app.get('/truerev/random', (req, res) => res.send("Testing good"))
+app.post('/truerev/user/create', bodyParser, (req, res) => {
+	if(req.body.name && req.body.email)
+	{
+		database.createUser(req.body.email, req.body.name)
+		res.json({ message : 'succeeded'})
+	}
+	else
+	{
+		res.json({ message : 'failed' })
+	}
+})
+
+app.post('/truerev/video/upload', bodyParser, (req, res) => {
+	if(req.body.videofile && req.body.email)
+	{
+		
+	}
+	res.json({message:'recieved'})
+})
 
 app.post('/webhooks/github', (req, res) => {
     console.log("github update called")
     /*var sender = req.body.sender;
     var branch = req.body.ref;*/
 
-    deploy(res)
+    //deploy(res)
 })
 
 const deploy = (res) => {
