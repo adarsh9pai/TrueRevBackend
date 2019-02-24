@@ -4,12 +4,21 @@ const port = 3000
 const childProcess = require('child_process')
 const database = require('./database.js')
 const bodyParser = require('body-parser').json()
+const multer = require('multer')
+const multerupload = multer({ dest: 'Videos/' })
+
+app.use(bodyParser)
+app.use(function(req, res, next) {
+	    res.header("Access-Control-Allow-Origin", "*");
+	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	    next();
+});
 
 app.listen(port, () => console.log('Listening on port', port))
 
 app.get('/truerev/', (req, res) => res.json({ message: 'Hello World' }))
 
-app.post('/truerev/user/create', bodyParser, (req, res) => {
+app.post('/truerev/user/create', (req, res) => {
 	if(req.body.name && req.body.email)
 	{
 		database.createUser(req.body.email, req.body.name)
@@ -21,13 +30,7 @@ app.post('/truerev/user/create', bodyParser, (req, res) => {
 	}
 })
 
-app.post('/truerev/video/upload', bodyParser, (req, res) => {
-	if(req.body.videofile && req.body.email)
-	{
-		
-	}
-	res.json({message:'recieved'})
-})
+//app.post('/truerev/video/upload', multerupload.any(), upload.fileupload)
 
 app.post('/webhooks/github', (req, res) => {
     console.log("github update called")
